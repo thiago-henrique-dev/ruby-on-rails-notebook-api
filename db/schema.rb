@@ -10,12 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_14_204000) do
+ActiveRecord::Schema.define(version: 2022_11_16_142409) do
 
   create_table "contacts", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.string "birthdate"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "kind_id"
+    t.index ["kind_id"], name: "index_contacts_on_kind_id"
+  end
+
+  create_table "kinds", force: :cascade do |t|
+    t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
