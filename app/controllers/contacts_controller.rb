@@ -47,6 +47,8 @@ class ContactsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def contact_params
-      params.require(:contact).permit(:name, :email, :birthdate, :kind_id)
+      params.require(:contact).permit(
+          :name, :email, :birthdate, :kind_id, :phones_attributes [id:, :number, :_destroy]
+          )
     end
   end
