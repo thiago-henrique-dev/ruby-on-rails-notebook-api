@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount_devise_token_auth_for '[USER_CLASS]', at: '[MOUNT_PATH]'
   resources :kinds 
   resources :contacts do
     resource :kind, only: [:show]
