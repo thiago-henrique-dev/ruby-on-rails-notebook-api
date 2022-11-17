@@ -1,4 +1,12 @@
 class KindsController < ApplicationController
+
+
+  include ActionController::HttpAutentication::Digest::ControllerMethods
+  USERS = {
+    "Thiago" => Digest::MD5.hexdigest(["Thiago",REALM,"secrete"].join(":"))
+  }
+
+  before_action :authenticate
   before_action :set_kind, only: [:show, :update, :destroy]
 
   # GET /kinds
@@ -52,4 +60,9 @@ class KindsController < ApplicationController
     def kind_params
       params.require(:kind).permit(:description)
     end
+
+    def authenticate
+      authenticate_or_request_with_http_digest(REALM) do |username|
+        USERS[username]
+    end 
 end
