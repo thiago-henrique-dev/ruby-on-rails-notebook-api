@@ -14,3 +14,4 @@
        methods: [:get, :post, :put, :patch, :delete, :options, :head]
    end
  end
+ Rails.application.config.middleware.use AppName, "Notebook API - OK!"
