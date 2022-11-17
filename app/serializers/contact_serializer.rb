@@ -1,9 +1,14 @@
 class ContactSerializer < ActiveModel::Serializer
   attributes :id, :name, :email, :birthdate #:author
 
-  belongs_to :kind 
+  belongs_to :kind do
+
+  end  
   has_many :phones 
   has_one :address
+
+  link(:self) { contact_url(object.id) }
+  link(:kind) { kind_url(object.kind.id) }
 
   #def author
   #  "Thiago Henrique"
